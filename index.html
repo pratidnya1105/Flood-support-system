@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodSupport - Live Map & Care Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Leaflet.js Map CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        /* Specific Styles for Map and Precautions Layout Grid */
+        #map-canvas-container {
+            height: 450px;
+            width: 100%;
+            border-radius: 8px;
+            z-index: 1;
+        }
+        .precaution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 600px) {
+            .precaution-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .dos-div {
+            background-color: #e6f4ea;
+            border-left: 5px solid var(--success);
+            padding: 1rem;
+            border-radius: 6px;
+        }
+        .donts-div {
+            background-color: #fce8e6;
+            border-left: 5px solid var(--danger);
+            padding: 1rem;
+            border-radius: 6px;
+        }
+        .precaution-list {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .precaution-list li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><h1><a href="index.html">🌊 Flood Support System</a></h1></div>
+        <nav>
+            <a href="index.html" class="active">Live Map Tracker</a>
+            <a href="victim.html">Victim Portal</a>
+            <a href="donor.html">Donors & NGOs</a>
+            <a href="admin.html">System Admin</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="content-layout-grid">
+            <!-- Left Main Content Column -->
+            <div class="layout-column">
+                <!-- LIVE MAP BLOCK -->
+                <div class="content-block-div">
+                    <h2>Live Geospatial Flood Monitoring - Kolhapur District</h2>
+                    <p class="info-paragraph">Tracking current alerts and water stagnation indicators across the continuous Kolhapur district. Click the markers on the live map canvas below to check specific region assessment statuses.</p>
+                    
+                    <!-- Leaflet Live Map Integration target -->
+                    <div id="map-canvas-container"></div>
+                </div>
+
+                <!-- PRECAUTIONS & HEALTH CARE BLOCK -->
+                <div class="content-block-div">
+                    <h2>Critical Flood Safety Precautions & Care</h2>
+                    <p class="info-paragraph">Follow these mandatory guidelines issued by disaster response units during emergency flooding situations to minimize waterborne dangers and structural injuries.</p>
+                    
+                    <div class="precaution-grid">
+                        <!-- DO'S DIV BLOCK -->
+                        <div class="dos-div">
+                            <h3 style="color: #137333;">✔️ Do's (Essential Care)</h3>
+                            <ul class="precaution-list">
+                                <li><strong>Boil Drinking Water:</strong> Always boil water or mix in chlorine tablets before use to destroy harmful waterborne pathogens.</li>
+                                <li><strong>Check Higher Ground:</strong> Evacuate to concrete upper floors or predefined community shelters immediately if water approaches.</li>
+                                <li><strong>Pack Emergency Bags:</strong> Keep cash, medications, identity cards, dry rations, and fresh batteries in a waterproof bag.</li>
+                                <li><strong>Disconnect Power Lines:</strong> Switch off the main household electricity board circuit to prevent accidental shock hazards.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- DONT'S DIV BLOCK -->
+                        <div class="donts-div">
+                            <h3 style="color: #c5221f;">❌ Don'ts (Strict Warnings)</h3>
+                            <ul class="precaution-list">
+                                <li><strong>Avoid Standing Water:</strong> Do not walk or swim through flooded channels; structural undercurrents can sweep away adults easily.</li>
+                                <li><strong>Do Not Drive:</strong> Avoid crossing submerged roads. Vehicles can lose traction and slide into deeper ditches.</li>
+                                <li><strong>Do Not Touch Electronics:</strong> Stay completely away from water-damaged appliances, power poles, and fallen wiring systems.</li>
+                                <li><strong>Ignore Rumors:</strong> Do not spread unverified panic. Follow updates solely via government radios or official control panels.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar Panel Column -->
+            <div class="layout-column">
+                <div class="content-block-div">
+                    <h2>District Event Ticker</h2>
+                    <div class="feed-item-row">
+                        <div><strong>Panchganga River</strong><br><small>Approaching Warning Level</small></div>
+                        <span class="status-pill pill-danger">Alert</span>
+                    </div>
+                    <div class="feed-item-row">
+                        <div><strong>Shirol Region</strong><br><small>Rescue boats stationed</small></div>
+                        <span class="status-pill pill-success">Ready</span>
+                    </div>
+                    <div class="feed-item-row">
+                        <div><strong>Karveer Area</strong><br><small>Low-lying areas evacuated</small></div>
+                        <span class="status-pill pill-warning">Active</span>
+                    </div>
+                </div>
+
+                <div class="content-block-div">
+                    <h2>Kolhapur Control Centers</h2>
+                    <p class="info-paragraph">
+                        <strong>District Helpline:</strong> 0231-2653962<br>
+                        <strong>Disaster Control Room:</strong> 1077<br>
+                        <strong>Ambulance Unit:</strong> 102
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Flood Support System Architecture Hub. Disaster Response Division.</p></footer>
+
+    <!-- Leaflet.js Map Library Engine Script -->
+    <script src="https://unpkg.com" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        // Initialize the interactive live map focused on Kolhapur coordinates
+        // Latitude: 16.7050, Longitude: 74.2433, Zoom Level: 10
+        const map = L.map('map-canvas-container').setView([16.7050, 74.2433], 10);
+
+        // Render OpenStreetMap default street tile textures
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add Mock Danger/Alert Markers across vulnerable sectors of Kolhapur
+        const kolhapurCityMarker = L.marker([16.7050, 74.2433]).addTo(map)
+            .bindPopup('<b>Kolhapur City Headquarters</b><br>Status: Rain Monitoring Station Active.');
+
+        const panchgangaMarker = L.marker([16.7120, 74.2150]).addTo(map)
+            .bindPopup('<b>Panchganga River Bank Area</b><br><span style="color:red;font-weight:bold;">CRITICAL:</span> Water level monitoring high. Avoid low layouts.');
+
+        const ichalkaranjiMarker = L.marker([16.6926, 74.4666]).addTo(map)
+            .bindPopup('<b>Ichalkaranji Region</b><br>Status: Evacuation pathways open. 2 safe camps functional.');
+    </script>
+</body>
+</html>
