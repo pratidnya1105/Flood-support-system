@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodSupport - Donor Contributions & NGOs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Specialized donor form style updates */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .pillar-card {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+        .pillar-card h4 {
+            color: var(--primary-dark);
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+        .pillar-card p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        .urgent-alert-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .urgent-list {
+            margin-left: 1.2rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><h1><a href="index.html">🌊 Flood Support System</a></h1></div>
+        <nav>
+            <a href="index.html">Live Map Tracker</a>
+            <a href="victim.html">Victim Portal</a>
+            <a href="donor.html" class="active">Donors & NGOs</a>
+            <a href="admin.html">System Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- URGENT FIELD REQUIREMENTS INK -->
+        <div class="urgent-alert-box">
+            <strong style="color: #856404;">⚠️ High Priority Relief Needs:</strong>
+            <p style="font-size: 0.9rem; color: #555; margin-top: 2px;">Ground dispatch units in Kolhapur low-lying areas are requesting the following assets immediately:</p>
+            <ul class="urgent-list">
+                <li>Ready-to-eat dry food items (Biscuits, Rice flakes, Baby formula milk powder).</li>
+                <li>Fresh clothing sets (Specifically clean blankets, thermal underwear, and raincoats).</li>
+                <li>Temporary open shelter halls near unflooded town border lines.</li>
+            </ul>
+        </div>
+
+        <!-- RECENT DEPLOYMENT SUMMARY PILLARS -->
+        <div class="pillar-grid">
+            <div class="pillar-card">
+                <div style="font-size: 1.8rem;">💰</div>
+                <h4>Financial Aid</h4>
+                <p>Powers fuel for rescue boats, medical procurement camps, and direct cash relief to victims.</p>
+            </div>
+            <div class="pillar-card">
+                <div style="font-size: 1.8rem;">🍏</div>
+                <h4>Food Provisions</h4>
+                <p>Accepting non-perishable packets, pure mineral water bottles, and instant nutrition bars.</p>
+            </div>
+            <div class="pillar-card">
+                <div style="font-size: 1.8rem;">👕</div>
+                <h4>Clothing Care</h4>
+                <p>Distributing clean blankets, clothes, and waterproof footwear to displaced families.</p>
+            </div>
+            <div class="pillar-card">
+                <div style="font-size: 1.8rem;">🏠</div>
+                <h4>Emergency Shelter</h4>
+                <p>Offer empty warehouses, wedding halls, or spare residential rooms as dry safe camps.</p>
+            </div>
+        </div>
+
+        <div class="content-layout-grid">
+            <!-- Left Column: Modular Pledge Submission Form -->
+            <div class="layout-column">
+                <div class="content-block-div">
+                    <h2>Submit a Support Pledge</h2>
+                    <p class="info-paragraph">Your resources keep relief chains operational. Choose a specific donation classification category from the dropdown division box below to customize your support details.</p>
+                    
+                    <form onsubmit="handleFormSubmission(event, 'Your generous relief pledge has been logged into our centralized inventory dashboard. A logistics officer or matched NGO coordinator will contact you shortly to execute pickup or transfer.')">
+                        <div class="input-wrapper-div">
+                            <label>Benefactor / Corporate Organization Name</label>
+                            <input type="text" required placeholder="e.g., Amit Desai / Help Foundation">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Primary Contact Number</label>
+                            <input type="tel" required placeholder="e.g., 9876543210">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Donation Classification Category</label>
+                            <select id="aidTypeDropdown" onchange="toggleAidInputs()">
+                                <option value="cash">Monetary Electronic Donation (Financial Aid)</option>
+                                <option value="food">Ready-to-Eat Food / Drinking Water Supply</option>
+                                <option value="clothes">Fresh Clothing Packages / Dry Blankets</option>
+                                <option value="shelter">Temporary Safe Shelter Provisions (Spaces)</option>
+                            </select>
+                        </div>
+
+                        <!-- DYNAMIC SUB-INPUT FIELDS -->
+                        <!-- 1. Financial input -->
+                        <div id="cash-input-group" class="input-wrapper-div dynamic-donor-field">
+                            <label>Valuation Amount Contribution (INR / USD)</label>
+                            <input type="number" placeholder="e.g., 10000">
+                        </div>
+                        
+                        <!-- 2. Food input -->
+                        <div id="food-input-group" class="input-wrapper-div dynamic-donor-field hidden-block">
+                            <label>Describe Food Items & Total Package Quantities</label>
+                            <textarea rows="3" placeholder="e.g., 100 boxes of premium biscuits, 50 crates of 1-litre drinking water bottles..."></textarea>
+                        </div>
+
+                        <!-- 3. Clothing input -->
+                        <div id="clothes-input-group" class="input-wrapper-div dynamic-donor-field hidden-block">
+                            <label>Describe Clothing Types, Sizes, and Counts</label>
+                            <textarea rows="3" placeholder="e.g., 40 heavy wool blankets, 100 assorted children's clean shirts, 50 pairs of rubber boots..."></textarea>
+                        </div>
+
+                        <!-- 4. Shelter input -->
+                        <div id="shelter-input-group" class="input-wrapper-div dynamic-donor-field hidden-block">
+                            <label>Shelter Address, Max Capacity, and Duration Available</label>
+                            <textarea rows="3" placeholder="e.g., Empty community banquet hall located at Rajaram Road. Can accommodate up to 60 individuals. Available for 15 days..."></textarea>
+                        </div>
+
+                        <button type="submit" class="action-btn">Process Support Pledge</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: NGO Registration Form Block -->
+            <div class="layout-column">
+                <div class="content-block-div">
+                    <h2>NGO Volunteer Registration</h2>
+                    <p class="info-paragraph">Are you an organized volunteer group, civilian boat crew, or medical squad? Register your organization details to pull rescue tickets from our central command panel.</p>
+                    
+                    <form onsubmit="handleFormSubmission(event, 'NGO verification profile created. Our disaster team will contact your lead coordinator to sync credentials.')">
+                        <div class="input-wrapper-div">
+                            <label>Registered NGO / Volunteer Team Name</label>
+                            <input type="text" required placeholder="e.g., Kolhapur Rescue Squad">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Government Approval Registration ID</label>
+                            <input type="text" required placeholder="e.g., REG-2026-9842">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Active Personnel / Ground Volunteer Count</label>
+                            <input type="number" min="1" value="5">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Available Assets & Fleet Vehicles</label>
+                            <textarea rows="2" placeholder="e.g., 2 inflatable motorboats, 1 medical ambulance van, 10 swift-water swimmers..."></textarea>
+                        </div>
+                        <button type="submit" class="action-btn" style="background-color: var(--dark);">Link NGO Team</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Flood Support System Architecture Hub. Disaster Response Division.</p></footer>
+
+    <!-- RE-INFORCED LOGIC FOR SWITCHING DONOR FIELD VISIBILITIES -->
+    <script>
+        function handleFormSubmission(event, outputAlertText) {
+            event.preventDefault();
+            alert(outputAlertText);
+            event.target.reset();
+            // Reset to show cash field default layout visual after clean wipe

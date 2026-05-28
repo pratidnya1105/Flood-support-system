@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodSupport - Admin System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><h1><a href="index.html">🌊 Flood Support System</a></h1></div>
+        <nav>
+            <a href="index.html">Live Map Tracker</a>
+            <a href="victim.html">Victim Portal</a>
+            <a href="donor.html">Donors & NGOs</a>
+            <a href="admin.html" class="active">System Admin</a>
+        </nav>
+    </header>
+    <main>
+        <div class="full-width-layout">
+            <div class="content-block-div">
+                <h2>Central Emergency Database Command</h2>
+                <div style="overflow-x: auto; margin-top: 1.5rem;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: var(--secondary); border-bottom: 2px solid var(--border); text-align: left;">
+                                <th style="padding: 1rem;">Ticket ID</th>
+                                <th style="padding: 1rem;">Origin Area</th>
+                                <th style="padding: 1rem;">System Status</th>
+                                <th style="padding: 1rem;">Operational Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 1rem; font-weight: bold;">#TS-902</td>
+                                <td style="padding: 1rem;">Sector 4 East Marina</td>
+                                <td style="padding: 1rem;"><span class="status-pill pill-danger">Unresolved</span></td>
+                                <td style="padding: 1rem;"><button onclick="alert('Re-routing closest response team.')" style="padding: 0.4rem 0.8rem; cursor: pointer;">Deploy Boat</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer><p>&copy; 2026 Flood Support System Architecture Hub.</p></footer>
+</body>
+</html>

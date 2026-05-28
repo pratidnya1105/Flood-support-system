@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodSupport - Victim SOS & Resources</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Specific layouts for resource grid and meters */
+        .alert-meter-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .pulse-indicator {
+            width: 12px;
+            height: 12px;
+            background-color: var(--danger);
+            border-radius: 50%;
+            display: inline-block;
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .resource-card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .resource-card span {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .first-aid-box {
+            background: #e8f4fd;
+            border-left: 5px solid var(--primary);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        .step-list {
+            margin-left: 1.2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .step-list li {
+            margin-bottom: 0.6rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><h1><a href="index.html">🌊 Flood Support System</a></h1></div>
+        <nav>
+            <a href="index.html">Live Map Tracker</a>
+            <a href="victim.html" class="active">Victim Portal</a>
+            <a href="donor.html">Donors & NGOs</a>
+            <a href="admin.html">System Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- LIVE CRITICAL WATER MONITORING METER -->
+        <div class="alert-meter-box">
+            <div>
+                <span class="pulse-indicator"></span>
+                <strong style="color: #856404; margin-left: 5px;">Live River Status:</strong> 
+                <span>Panchganga River is currently flowing at 41.6 feet (Warning Level: 39 feet / Danger Level: 43 feet).</span>
+            </div>
+            <span class="status-pill pill-warning" style="animation: blinker 2s infinite;">High Alert</span>
+        </div>
+
+        <div class="content-layout-grid">
+            <!-- Left Column: SOS Form and First Aid Content -->
+            <div class="layout-column">
+                <!-- SOS SIGNAL FORM BLOCK -->
+                <div class="content-block-div">
+                    <h2>Broadcast SOS Distress Signal</h2>
+                    <p class="info-paragraph">Are you trapped, injured, or out of food supplies? Fill out this emergency partition. Your GPS marker and payload information will route directly to nearby civilian rescue motorboats and helicopter dispatch teams.</p>
+                    
+                    <form onsubmit="handleFormSubmission(event, 'Your SOS signal has been securely broadcasted to the Disaster Command Center. Please stay calm, keep your phone on battery saver, and wait for coordinates match.')">
+                        <div class="input-wrapper-div">
+                            <label>Individual or Family Representative Name</label>
+                            <input type="text" required placeholder="e.g., Rajesh Patil">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Current Physical Location / Submerged Landmarks</label>
+                            <input type="text" required placeholder="e.g., Near Market Yard, 2nd Floor, Shahupuri">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Active Contact / Alternate Mobile Number</label>
+                            <input type="tel" required placeholder="e.g., 9876543210">
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Primary Urgency Category</label>
+                            <select>
+                                <option>Immediate Structural Evacuation (Trapped by Water)</option>
+                                <option>Critical Medical Emergency (Injuries / Dialysis / Pregnancy)</option>
+                                <option>Severe Food, Clean Water & Essential Supplies Shortage</option>
+                            </select>
+                        </div>
+                        <div class="input-wrapper-div">
+                            <label>Total Number of Stranded Individuals</label>
+                            <input type="number" min="1" value="1">
+                        </div>
+                        <button type="submit" class="action-btn action-btn-danger">🚨 Transmit Emergency Distress Signal</button>
+                    </form>
+                </div>
+
+                <!-- MEDICAL & PSYCHOLOGICAL FIRST AID CARE -->
+                <div class="content-block-div">
+                    <h2>Immediate Survival & Medical Care Guide</h2>
+                    <p class="info-paragraph">If rescue teams are delayed due to bad weather conditions, implement these self-preservation protocols inside your isolated structure:</p>
+                    
+                    <div class="first-aid-box">
+                        <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">🩹 Waterborne Health & Injury Care</h3>
+                        <ul class="step-list">
+                            <li><strong>Treating Open Wounds:</strong> Clean any floodwater-exposed cuts instantly with clean bottled water and soap. Apply antiseptic to prevent severe Leptospirosis infection.</li>
+                            <li><strong>Snake or Insect Bites:</strong> Keep the bitten limb completely still below heart level. Do not cut the wound. Tie a firm cloth bandage 2 inches above the bite and wait for medical evacuation.</li>
+                            <li><strong>Preventing Dehydration:</strong> Never drink unboiled tap water or rainwater collected near chemical plants. Use ORS (Oral Rehydration Salts) packets or mix 6 teaspoons of sugar and 0.5 teaspoon of salt in clean water.</li>
+                            <li><strong>Mental Calming Strategy:</strong> Keep stranded children engaged. Reassure them that emergency responders are processing requests systematically. Take slow, deep breaths to avoid panic-induced oxygen depletion.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Camp Availabilities and Live Supply Stocks -->
+            <div class="layout-column">
+                <!-- ACTIVE SAFE REFUGEE CAMPS -->
+                <div class="content-block-div">
+                    <h2>Verified Safe Relief Camps</h2>
+                    <p class="info-paragraph">These secure high-ground installations provide dry beds, hot food counters, and active paramilitary/medical squads.</p>
+                    
+                    <div class="feed-item-row">
+                        <div><strong>Shahu Maharaj High School Camp</strong><br><small>Dasara Chowk | Capacity: 120 slots open</small></div>
+                        <span class="status-pill pill-success">Available</span>
+                    </div>
+                    <div class="feed-item-row">
+                        <div><strong>CPR Hospital Special Wing</strong><br><small>Station Road | Intensive Medical Care Only</small></div>
+                        <span class="status-pill pill-danger">Full</span>
+                    </div>
+                    <div class="feed-item-row">
+                        <div><strong>Commerce College Shelter</strong><br><small>Rajarampuri | Capacity: 45 slots open</small></div>
+                        <span class="status-pill pill-success">Available</span>
+                    </div>
+                </div>
+
+                <!-- STOCK INVENTORY COUNTER FOR VICTIMS -->
+                <div class="content-block-div">
+                    <h2>District Supply Dispatches</h2>
+                    <p class="info-paragraph">Current status of relief goods successfully processed and distributed across Kolhapur camps today:</p>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <span>📦</span> 1,200+
+                            <small style="display:block;color:#666;font-size:0.75rem;margin-top:2px;">Food Packets</small>
+                        </div>
+                        <div class="resource-card">
+                            <span>💧</span> 4,500L
+                            <small style="display:block;color:#666;font-size:0.75rem;margin-top:2px;">Drinking Water</small>
+                        </div>
+                        <div class="resource-card">
+                            <span>💊</span> 850
+                            <small style="display:block;color:#666;font-size:0.75rem;margin-top:2px;">Medical Kits</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Flood Support System Architecture Hub. Disaster Response Division.</p></footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
